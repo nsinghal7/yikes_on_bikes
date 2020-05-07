@@ -144,13 +144,13 @@
 
     <link name="rider">
         <inertial>
-            <origin xyz="0 0 ${h_R}" />
+            <origin xyz="0 0 ${h_R/2}" />
             <mass value="${m_R}" />
             <inertia ixx="${m_R * h_R**2 / 3}" iyy="${m_R * h_R**2 / 3}" izz="0" />
         </inertial>
 
         <visual>
-            <origin xyz="0 0 ${h_R}" />
+            <origin xyz="0 0 ${h_R/2}" />
             <geometry>
                 <cylinder length="${h_R}" radius=".01" />
             </geometry>
