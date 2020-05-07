@@ -13,6 +13,14 @@
                 <color rgba="0 1 0 1" />
             </material>
         </visual>
+
+        <collision>
+            <origin xyz="0 0 -.025" />
+            <geometry>
+                <box size="100 100 .05" />
+            </geometry>
+            <drake:proximity_properties drake:mu_static="0.75" />
+        </collision>
     </link>
     <joint name="ground_is_fixed_to_world" type="fixed">
         <parent link="world" />
@@ -181,6 +189,14 @@
                 <color rgba="0 0 1 1" />
             </material>
         </visual>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="1.570796 0 0" />
+            <geometry>
+                <cylinder length=".01" radius="${r_F}" />
+            </geometry>
+            <drake:proximity_properties drake:mu_static="0.75" />
+        </collision>
     </link>
     <joint name="front_wheel_rotates" type="continuous">
         <parent link="front_wheel_center_steer_basis" />
