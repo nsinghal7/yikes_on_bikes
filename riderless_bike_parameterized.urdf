@@ -84,7 +84,7 @@
         <visual>
             <origin xyz="0 0 0" rpy="0 0 1.570796" />
             <geometry>
-                <cylinder length=".1" radius="${r_R}" />
+                <cylinder length=".01" radius="${r_R}" />
             </geometry>
             <material>
                 <color rgba="1 0 0 1" />
@@ -108,7 +108,7 @@
         <visual>
             <origin xyz="${d1/2} 0 0" />
             <geometry>
-                <cylinder length="${d1}" radius=".2" />
+                <cylinder length="${d1}" radius=".02" />
             </geometry>
 
             <material>
@@ -174,7 +174,7 @@
         <visual>
             <origin xyz="0 0 0" rpy="0 0 1.570796" />
             <geometry>
-                <cylinder length=".1" radius="${r_F}" />
+                <cylinder length=".01" radius="${r_F}" />
             </geometry>
 
             <material>
