@@ -70,7 +70,7 @@
         <inertial>
             <origin xyz="0 0 0" />
             <mass value="${m_D}" />
-            <inertia ixx="${I_D11}" iyy="${I_D22}" izz="${I_D33}" ixy="0" iyz="0" ixz="0" />
+            <inertia ixx="${I_D[0, 0]}" iyy="${I_D[1, 1]}" izz="${I_D[2, 2]}" ixy="0" iyz="0" ixz="${I_D[0, 2]}" />
         </inertial>
 
         <!-- Draw back wheel as cylinder with length along D.y -->
@@ -95,7 +95,7 @@
         <inertial>
             <origin xyz="${L1} 0 ${-L3}" />
             <mass value="${m_C}" />
-            <inertia ixx="${I_C11}" iyy="${I_C22}" izz="${I_C33}" ixy="0" iyz="0" ixz="${I_C13}" />
+            <inertia ixx="${I_C[0, 0]}" iyy="${I_C[1, 1]}" izz="${I_C[2, 2]}" ixy="0" iyz="0" ixz="${I_C[0, 2]}" />
         </inertial>
 
         <visual>
@@ -128,7 +128,7 @@
         <inertial>
             <origin xyz="${d3 + L3} 0 ${-d2 - L4}" />
             <mass value="${m_E}" />
-            <inertia ixx="${I_E11}" iyy="${I_E22}" izz="${I_E33}" ixy="0" iyz="0" ixz="$I_E13" />
+            <inertia ixx="${I_E[0, 0]}" iyy="${I_E[1, 1]}" izz="${I_E[2, 2]}" ixy="0" iyz="0" ixz="$I_E[0, 2]" />
         </inertial>
 
         <visual>
@@ -161,7 +161,7 @@
         <inertial>
             <origin xyz="0 0 0" />
             <mass value="${m_F}" />
-            <inertia ixx="${I_F11}" iyy="${I_F22}" izz="${I_F33}" ixy="0" ixz="0" iyz="0" />
+            <inertia ixx="${I_F[0, 0]}" iyy="${I_F[1, 1]}" izz="${I_F[2, 2]}" ixy="0" ixz="0" iyz="0" />
         </inertial>
 
         <visual>
