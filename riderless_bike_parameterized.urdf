@@ -98,6 +98,17 @@
                 <color rgba="1 0 1 1" />
             </material>
         </visual>
+
+        <visual>
+            <origin xyz="0 0 ${r_R/2}" />
+            <geometry>
+                <cylinder length="${r_R}" radius=".01" />
+            </geometry>
+
+            <material>
+                <color rgba="0 0 0" />
+            </material>
+        </visual>
     </link>
     <joint name="back_wheel_rotates" type="continuous">
         <parent link="back_wheel_center_roll_basis" />
@@ -187,6 +198,17 @@
 
             <material>
                 <color rgba="0 0 1 1" />
+            </material>
+        </visual>
+
+        <visual>
+            <origin xyz="0 0 ${r_F/2}" />
+            <geometry>
+                <cylinder length="${r_F}" radius=".01" />
+            </geometry>
+
+            <material>
+                <color rgba="0 0 0" />
             </material>
         </visual>
 
