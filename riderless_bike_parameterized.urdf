@@ -92,7 +92,7 @@
         <visual>
             <origin xyz="0 0 0" rpy="1.570796 0 0" />
             <geometry>
-                <cylinder length=".01" radius="${r_R}" />
+                <cylinder length=".02" radius="${r_R}" />
             </geometry>
             <material>
                 <color rgba="1 0 1 1" />
@@ -102,7 +102,7 @@
         <visual>
             <origin xyz="0 0 ${r_R/2}" />
             <geometry>
-                <cylinder length="${r_R}" radius=".01" />
+                <cylinder length="${r_R}" radius=".02" />
             </geometry>
 
             <material>
@@ -160,7 +160,7 @@
         <visual>
             <origin xyz="0 0 -${d2/2}" />
             <geometry>
-                <cylinder length="${d2}" radius=".01" />
+                <cylinder length="${d2}" radius=".02" />
             </geometry>
 
             <material>
@@ -193,7 +193,7 @@
         <visual>
             <origin xyz="0 0 0" rpy="1.570796 0 0" />
             <geometry>
-                <cylinder length=".01" radius="${r_F}" />
+                <cylinder length=".02" radius="${r_F}" />
             </geometry>
 
             <material>
@@ -204,7 +204,7 @@
         <visual>
             <origin xyz="0 0 ${r_F/2}" />
             <geometry>
-                <cylinder length="${r_F}" radius=".01" />
+                <cylinder length="${r_F}" radius=".02" />
             </geometry>
 
             <material>
@@ -215,7 +215,7 @@
         <collision>
             <origin xyz="0 0 0" rpy="1.570796 0 0" />
             <geometry>
-                <cylinder length=".01" radius="${r_F}" />
+                <cylinder length=".02" radius="${r_F}" />
             </geometry>
             <drake:proximity_properties drake:mu_static="0.75" />
         </collision>
