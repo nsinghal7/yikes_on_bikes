@@ -26,7 +26,7 @@
     <link name="floating_A_base" />
     <joint name="floating_A_base_joint" type="planar">
         <parent link="world" />
-        <child linke="floating_A_base" />
+        <child link="floating_A_base" />
         <axis xyz="0 0 1" />
     </joint>
 
