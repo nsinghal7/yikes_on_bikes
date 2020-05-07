@@ -66,11 +66,10 @@
 
     <!-- Roll coordinate in floating_yaw_base to tilt bike side to side -->
     <link name="roll_base" />
-    <joint name="roll_base_joint" type="revolute">
+    <joint name="roll_base_joint" type="continuous">
         <parent link="floating_yaw_base" />
         <child link="roll_base" />
         <axis xyz="1 0 0" />
-        <limit effort="1000000" lower="-1.5" upper="1.5" velocity="10000" />
     </joint>
 
     <!-- Back wheel center w/ roll basis link has same basis as roll_base but moved up -->
@@ -140,6 +139,32 @@
         <parent link="back_wheel_center_roll_basis" />
         <child link="rear_frame" />
         <axis xyz="0 1 0" />
+    </joint>
+
+
+    <link name="rider">
+        <inertial>
+            <origin xyz="0 0 ${h_R}" />
+            <mass value="${m_R}" />
+            <inertia ixx="${m_R * h_R**2 / 3}" iyy="${m_R * h_R**2 / 3}" izz="0" />
+        </inertial>
+
+        <visual>
+            <origin xyz="0 0 ${h_R}" />
+            <geometry>
+                <cylinder length="${h_R}" radius=".01" />
+            </geometry>
+
+            <material>
+                <color rgba="1 1 0 1" />
+            </material>
+        </visual>
+    </link>
+    <joint name="rider_joint" type="continuous">
+        <parent link="rear_frame" />
+        <child link="rider" />
+        <axis xyz="1 0 0" />
+        <origin xyz="${L1} 0 0" />
     </joint>
 
     <!-- Ce frame (Rear frame coords, where rear frame meets steering axis) -->
