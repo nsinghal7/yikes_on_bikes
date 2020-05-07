@@ -141,7 +141,7 @@
         <visual>
             <origin xyz="0 0 -${d2/2}" />
             <geometry>
-                <cylinder length="${d2}" radius=".1" />
+                <cylinder length="${d2}" radius=".01" />
             </geometry>
 
             <material>
