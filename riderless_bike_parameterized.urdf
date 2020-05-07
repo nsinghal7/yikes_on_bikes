@@ -87,7 +87,7 @@
                 <cylinder length=".01" radius="${r_R}" />
             </geometry>
             <material>
-                <color rgba="1 0 0 1" />
+                <color rgba="1 0 1 1" />
             </material>
         </visual>
     </link>
