@@ -82,7 +82,7 @@
 
         <!-- Draw back wheel as cylinder with length along D.y -->
         <visual>
-            <origin xyz="0 0 0" rpy="0 0 1.570796" />
+            <origin xyz="0 0 0" rpy="1.570796 0 0" />
             <geometry>
                 <cylinder length=".01" radius="${r_R}" />
             </geometry>
@@ -106,7 +106,7 @@
         </inertial>
 
         <visual>
-            <origin xyz="${d1/2} 0 0" />
+            <origin xyz="${d1/2} 0 0" rpy="0 1.570796 0" />
             <geometry>
                 <cylinder length="${d1}" radius=".02" />
             </geometry>
@@ -172,7 +172,7 @@
         </inertial>
 
         <visual>
-            <origin xyz="0 0 0" rpy="0 0 1.570796" />
+            <origin xyz="0 0 0" rpy="1.570796 0 0" />
             <geometry>
                 <cylinder length=".01" radius="${r_F}" />
             </geometry>
