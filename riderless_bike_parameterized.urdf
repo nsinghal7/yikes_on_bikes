@@ -166,6 +166,10 @@
         <axis xyz="1 0 0" />
         <origin xyz="${L1} 0 0" />
     </joint>
+    <transmission type="SimpleTransmission" name="rider_lean">
+        <actuator name="rider_lean_actuator" />
+        <joint name="rider_joint" />
+    </transmission>
 
     <!-- Ce frame (Rear frame coords, where rear frame meets steering axis) -->
     <link name="ce_frame" />
