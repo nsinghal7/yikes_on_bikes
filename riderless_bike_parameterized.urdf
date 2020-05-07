@@ -159,7 +159,7 @@
     <link name="front_wheel_center_steer_basis" />
     <joint name="front_wheel_center_steer_basis_joint" type="fixed">
         <parent link="front_frame" />
-        <child link="front_wheel__center_steer_basis" />
+        <child link="front_wheel_center_steer_basis" />
         <origin xyz="${-L3} 0 ${L4}" />
     </joint>
 
