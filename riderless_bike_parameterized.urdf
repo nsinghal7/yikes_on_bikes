@@ -165,7 +165,7 @@
         <child link="rider" />
         <axis xyz="1 0 0" />
         <origin xyz="${L1} 0 0" rpy="0 .76 0"/>
-        <dynamics damping="${rider_damping}"
+        <dynamics damping="${rider_damping}" />
     </joint>
     <transmission type="SimpleTransmission" name="rider_lean">
         <actuator name="rider_lean_actuator" />
