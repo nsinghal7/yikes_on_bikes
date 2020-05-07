@@ -21,13 +21,20 @@
     </joint>
 
 
-    <!-- floating  A basis-->
-
-    <link name="floating_A_base" />
-    <joint name="floating_A_base_joint" type="planar">
+    <!-- floating x coordinate in the world frame -->
+    <link name="floating_x_base" />
+    <joint name="floating_x_base_joint" type="prismatic">
         <parent link="world" />
-        <child link="floating_A_base" />
-        <axis xyz="0 0 1" />
+        <child link="floating_x_base" />
+        <axis xyz="1 0 0" />
+    </joint>
+
+    <!-- floating x coordinate in the world frame -->
+    <link name="floating_y_base" />
+    <joint name="floating_y_base_joint" type="prismatic">
+        <parent link="floating_x_base" />
+        <child link="floating_y_base" />
+        <axis xyz="0 1 0" />
     </joint>
 
 
@@ -35,7 +42,7 @@
     <!-- floating z coordinate in the world frame. currently locked to zero for simplicity-->
     <link name="floating_z_base" />
     <joint name="floating_z_base_joint" type="fixed">
-        <parent link="floating_A_base" />
+        <parent link="floating_y_base" />
         <child link="floating_z_base" />
         <origin xyz="0 0 0" />
     </joint>
