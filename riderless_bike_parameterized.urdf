@@ -5,9 +5,9 @@
     <!-- Create ground visual -->
     <link name="ground">
         <visual>
-            <origin xyz="0 0 -.5" />
+            <origin xyz="0 0 -.025" />
             <geometry>
-                <box size="100 100 .5" />
+                <box size="100 100 .05" />
             </geometry>
             <material>
                 <color rgba="0 1 0 1" />
