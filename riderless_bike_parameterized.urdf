@@ -2,36 +2,6 @@
 
 <robot name="RiderlessBike" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-    <xacro:property name="r_R" value=".3" />
-    <xacro:property name="r_F" value=".3" />
-    <xacro:property name="m_D" value="2.2" />
-    <xacro:property name="m_C" value="1.4" />
-    <xacro:property name="m_E" value="0.4653333333333333" />
-    <xacro:property name="m_F" value="1.8" />
-    <xacro:property name="L1" value="0.375" />
-    <xacro:property name="L2" value="0.26785714285714285" />
-    <xacro:property name="L3" value="0.025902578796561607" />
-    <xacro:property name="L4" value="-0.1547277936962751" />
-    <xacro:property name="d1" value=".75" />
-    <xacro:property name="d2" value=".525" />
-    <xacro:property name="d3" value=".02" />
-    <xacro:property name="I_D11" value=".099" />
-    <xacro:property name="I_D22" value=".198" />
-    <xacro:property name="I_D33" value=".099" />
-    <xacro:property name="I_F11" value=".081" />
-    <xacro:property name="I_F22" value=".162" />
-    <xacro:property name="I_F33" value=".081" />
-    <xacro:property name="I_C11" value="0.23809524" />
-    <xacro:property name="I_C22" value="0.27559524" />
-    <xacro:property name="I_C33" value="0.0375" />
-    <xacro:property name="I_C13" value="0" />
-    <xacro:property name="I_E11" value="0.06778453" />
-    <xacro:property name="1_E22" value="0.06473638" />
-    <xacro:property name="I_E33" value="0.0003285" />
-    <xacro:property name="I_E13" value="0.00249835" />
-
-
-
     <!-- Create ground visual -->
     <link name="ground">
         <visual>
