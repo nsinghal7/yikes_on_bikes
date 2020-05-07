@@ -66,10 +66,11 @@
 
     <!-- Roll coordinate in floating_yaw_base to tilt bike side to side -->
     <link name="roll_base" />
-    <joint name="roll_base_joint" type="continuous">
+    <joint name="roll_base_joint" type="revolute">
         <parent link="floating_yaw_base" />
         <child link="roll_base" />
         <axis xyz="1 0 0" />
+        <limit effort="1000000" lower="-1.5" upper="1.5" velocity="10000" />
     </joint>
 
     <!-- Back wheel center w/ roll basis link has same basis as roll_base but moved up -->
