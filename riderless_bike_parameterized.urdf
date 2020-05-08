@@ -90,9 +90,9 @@
 
         <!-- Draw back wheel as cylinder with length along D.y -->
         <visual>
-            <origin xyz="0 0 0" rpy="1.570796 0 0" />
+            <origin xyz="0 0 0" rpy="${np.pi/2} 0 0" />
             <geometry>
-                <cylinder length=".02" radius="${r_R}" />
+                <cylinder length=".01" radius="${r_R}" />
             </geometry>
             <material>
                 <color rgba="1 0 1 1" />
@@ -119,13 +119,13 @@
     <!-- Rear frame -->
     <link name="rear_frame">
         <inertial>
-            <origin xyz="${L1} 0 ${-L3}" />
+            <origin xyz="${L1} 0 ${L2}" />
             <mass value="${m_C}" />
             <inertia ixx="${I_C[0, 0]}" iyy="${I_C[1, 1]}" izz="${I_C[2, 2]}" ixy="0" iyz="0" ixz="${I_C[0, 2]}" />
         </inertial>
 
         <visual>
-            <origin xyz="${d1/2} 0 0" rpy="0 1.570796 0" />
+            <origin xyz="${d1/2} 0 0" rpy="0 ${np.pi/2} 0" />
             <geometry>
                 <cylinder length="${d1}" radius=".02" />
             </geometry>
@@ -183,7 +183,7 @@
     <!-- Front frame -->
     <link name="front_frame">
         <inertial>
-            <origin xyz="${d3 + L3} 0 ${-d2 - L4}" />
+            <origin xyz="${d3 + L3} 0 ${-d2 + L4}" />
             <mass value="${m_E}" />
             <inertia ixx="${I_E[0, 0]}" iyy="${I_E[1, 1]}" izz="${I_E[2, 2]}" ixy="0" iyz="0" ixz="${I_E[0, 2]}" />
         </inertial>
@@ -222,9 +222,9 @@
         </inertial>
 
         <visual>
-            <origin xyz="0 0 0" rpy="1.570796 0 0" />
+            <origin xyz="0 0 0" rpy="${np.pi/2} 0 0" />
             <geometry>
-                <cylinder length=".02" radius="${r_F}" />
+                <cylinder length=".01" radius="${r_F}" />
             </geometry>
 
             <material>
@@ -244,9 +244,9 @@
         </visual>
 
         <collision>
-            <origin xyz="0 0 0" rpy="1.570796 0 0" />
+            <origin xyz="0 0 0" rpy="${np.pi/2} 0 0" />
             <geometry>
-                <cylinder length=".02" radius="${r_F}" />
+                <cylinder length=".01" radius="${r_F}" />
             </geometry>
             <drake:proximity_properties drake:mu_static="0.75" />
         </collision>
