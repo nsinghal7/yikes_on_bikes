@@ -1,0 +1,244 @@
+<?xml version="1.0"?>
+
+<robot name="RiderlessBike" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <!-- Create ground visual -->
+    <link name="ground">
+        <visual>
+            <origin xyz="0 0 -.025" />
+            <geometry>
+                <box size="100 100 .05" />
+            </geometry>
+            <material>
+                <color rgba="0 1 0 1" />
+            </material>
+        </visual>
+    </link>
+    <joint name="ground_is_fixed_to_world" type="fixed">
+        <parent link="world" />
+        <child link="ground" />
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint>
+
+
+    <!-- floating x coordinate in the world frame -->
+    <link name="floating_x_base" />
+    <joint name="floating_x_base_joint" type="prismatic">
+        <parent link="world" />
+        <child link="floating_x_base" />
+        <axis xyz="1 0 0" />
+    </joint>
+
+    <!-- floating y coordinate in the world frame -->
+    <link name="floating_y_base" />
+    <joint name="floating_y_base_joint" type="prismatic">
+        <parent link="floating_x_base" />
+        <child link="floating_y_base" />
+        <axis xyz="0 1 0" />
+    </joint>
+
+
+
+    <!-- floating z coordinate in the world frame-->
+    <link name="floating_z_base" />
+    <joint name="floating_z_base_joint" type="prismatic">
+        <parent link="floating_y_base" />
+        <child link="floating_z_base" />
+        <axis xyz="0 0 1" />
+    </joint>
+
+    <!-- Floating yaw coordinate in floating_z_base to orient back wheel -->
+    <link name="floating_yaw_base" />
+    <joint name="floating_yaw_base_joint" type="continuous">
+        <parent link="floating_z_base" />
+        <child link="floating_yaw_base" />
+        <axis xyz="0 0 1" />
+    </joint>
+
+
+    <!-- Roll coordinate in floating_yaw_base to tilt bike side to side -->
+    <link name="roll_base" />
+    <joint name="roll_base_joint" type="continuous">
+        <parent link="floating_yaw_base" />
+        <child link="roll_base" />
+        <axis xyz="1 0 0" />
+    </joint>
+
+    <!-- Back wheel center w/ roll basis link has same basis as roll_base but moved up -->
+    <link name="back_wheel_center_roll_basis" />
+    <joint name="back_wheel_center_roll_basis_is_positioned" type="fixed">
+        <parent link="roll_base" />
+        <child link="back_wheel_center_roll_basis" />
+        <origin xyz="0 0 ${r_R}" />
+    </joint>
+
+    <!-- Back wheel link is rotating around back wheel center -->
+    <link name="back_wheel">
+        <inertial>
+            <origin xyz="0 0 0" />
+            <mass value="${m_D}" />
+            <inertia ixx="${I_D[0, 0]}" iyy="${I_D[1, 1]}" izz="${I_D[2, 2]}" ixy="0" iyz="0" ixz="${I_D[0, 2]}" />
+        </inertial>
+
+        <!-- Draw back wheel as cylinder with length along D.y -->
+        <visual>
+            <origin xyz="0 0 0" rpy="${np.pi/2} 0 0" />
+            <geometry>
+                <cylinder length=".01" radius="${r_R}" />
+            </geometry>
+            <material>
+                <color rgba="1 0 1 1" />
+            </material>
+        </visual>
+
+        <visual>
+            <origin xyz="0 0 ${r_R/2}" />
+            <geometry>
+                <cylinder length="${r_R}" radius=".02" />
+            </geometry>
+
+            <material>
+                <color rgba="0 0 0 1" />
+            </material>
+        </visual>
+    </link>
+    <joint name="back_wheel_rotates" type="continuous">
+        <parent link="back_wheel_center_roll_basis" />
+        <child link="back_wheel" />
+        <axis xyz="0 1 0" />
+    </joint>
+
+    <!-- Rear frame -->
+    <link name="rear_frame">
+        <inertial>
+            <origin xyz="${L1} 0 ${L2}" />
+            <mass value="${m_C}" />
+            <inertia ixx="${I_C[0, 0]}" iyy="${I_C[1, 1]}" izz="${I_C[2, 2]}" ixy="0" iyz="0" ixz="${I_C[0, 2]}" />
+        </inertial>
+
+        <visual>
+            <origin xyz="${d1/2} 0 0" rpy="0 ${np.pi/2} 0" />
+            <geometry>
+                <cylinder length="${d1}" radius=".02" />
+            </geometry>
+
+            <material>
+                <color rgba="0 1 0 1" />
+            </material>
+        </visual>
+    </link>
+    <joint name="rear_frame_pitch_joint" type="continuous">
+        <parent link="back_wheel_center_roll_basis" />
+        <child link="rear_frame" />
+        <axis xyz="0 1 0" />
+    </joint>
+
+
+    <link name="rider">
+        <inertial>
+            <origin xyz="0 0 ${h_R/2}" />
+            <mass value="${m_R}" />
+            <inertia ixx="${m_R * h_R**2 / 3}" iyy="${m_R * h_R**2 / 3}" izz="0" />
+        </inertial>
+
+        <visual>
+            <origin xyz="0 0 ${h_R/2}" />
+            <geometry>
+                <cylinder length="${h_R}" radius=".01" />
+            </geometry>
+
+            <material>
+                <color rgba="1 1 0 1" />
+            </material>
+        </visual>
+    </link>
+    <joint name="rider_joint" type="continuous">
+        <parent link="rear_frame" />
+        <child link="rider" />
+        <axis xyz="1 0 0" />
+        <origin xyz="${L1} 0 0" rpy="0 .76 0"/>
+        <dynamics damping="${rider_damping}" />
+    </joint>
+    <transmission type="SimpleTransmission" name="rider_lean">
+        <actuator name="rider_lean_actuator" />
+        <joint name="rider_joint" />
+    </transmission>
+
+    <!-- Ce frame (Rear frame coords, where rear frame meets steering axis) -->
+    <link name="ce_frame" />
+    <joint name="ce_frame_position_joint" type="fixed">
+        <parent link="rear_frame" />
+        <child link="ce_frame" />
+        <origin xyz="${d1} 0 0" />
+    </joint>
+
+    <!-- Front frame -->
+    <link name="front_frame">
+        <inertial>
+            <origin xyz="${d3 + L3} 0 ${-d2 + L4}" />
+            <mass value="${m_E}" />
+            <inertia ixx="${I_E[0, 0]}" iyy="${I_E[1, 1]}" izz="${I_E[2, 2]}" ixy="0" iyz="0" ixz="${I_E[0, 2]}" />
+        </inertial>
+
+        <visual>
+            <origin xyz="0 0 -${d2/2}" />
+            <geometry>
+                <cylinder length="${d2}" radius=".02" />
+            </geometry>
+
+            <material>
+                <color rgba="1 0 0 1" />
+            </material>
+        </visual>
+    </link>
+    <joint name="front_frame_steering_axis_joint" type="continuous" >
+        <parent link="ce_frame" />
+        <child link="front_frame" />
+        <axis xyz="0 0 1" />
+    </joint>
+
+    <!-- Front wheel w/ steer basis -->
+    <link name="front_wheel_center_steer_basis" />
+    <joint name="front_wheel_center_steer_basis_joint" type="fixed">
+        <parent link="front_frame" />
+        <child link="front_wheel_center_steer_basis" />
+        <origin xyz="0 0 ${-d2}" />
+    </joint>
+
+    <!-- Front wheel -->
+    <link name="front_wheel">
+        <inertial>
+            <origin xyz="0 0 0" />
+            <mass value="${m_F}" />
+            <inertia ixx="${I_F[0, 0]}" iyy="${I_F[1, 1]}" izz="${I_F[2, 2]}" ixy="0" ixz="0" iyz="0" />
+        </inertial>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="${np.pi/2} 0 0" />
+            <geometry>
+                <cylinder length=".01" radius="${r_F}" />
+            </geometry>
+
+            <material>
+                <color rgba="0 0 1 1" />
+            </material>
+        </visual>
+
+        <visual>
+            <origin xyz="0 0 ${r_F/2}" />
+            <geometry>
+                <cylinder length="${r_F}" radius=".02" />
+            </geometry>
+
+            <material>
+                <color rgba="0 0 0 1" />
+            </material>
+        </visual>
+    </link>
+    <joint name="front_wheel_rotates" type="continuous">
+        <parent link="front_wheel_center_steer_basis" />
+        <child link="front_wheel" />
+        <axis xyz="0 1 0" />
+    </joint>
+
+</robot>
