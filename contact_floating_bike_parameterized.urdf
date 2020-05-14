@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<robot name="FloatingBike" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot name="ContactFloatingBike" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
     <!-- Create ground visual -->
     <link name="ground">
@@ -13,6 +13,14 @@
                 <color rgba="0 1 0 1" />
             </material>
         </visual>
+
+        <collision>
+            <origin xyz="0 0 -.025" />
+            <geometry>
+                <box size="100 100 .05" />
+            </geometry>
+            <drake:proximity_properties drake:mu_static="0.75" />
+        </collision>
     </link>
     <joint name="ground_is_fixed_to_world" type="fixed">
         <parent link="world" />
@@ -101,6 +109,14 @@
                 <color rgba="0 0 0 1" />
             </material>
         </visual>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="${np.pi/2} 0 0" />
+            <geometry>
+                <cylinder length=".005" radius="${r_R}" />
+            </geometry>
+            <drake:proximity_properties drake:mu_static="0.75" drake:mu_dynamic=".6" />
+        </collision>
     </link>
     <joint name="back_wheel_rotates" type="continuous">
         <parent link="back_wheel_center_roll_basis" />
@@ -234,6 +250,14 @@
                 <color rgba="0 0 0 1" />
             </material>
         </visual>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="${np.pi/2} 0 0" />
+            <geometry>
+                <cylinder length=".005" radius="${r_F}" />
+            </geometry>
+            <drake:proximity_properties drake:mu_static="0.75" drake:mu_dynamic=".6" />
+        </collision>
     </link>
     <joint name="front_wheel_rotates" type="continuous">
         <parent link="front_wheel_center_steer_basis" />

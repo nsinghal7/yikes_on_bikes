@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<robot name="RiderlessBike" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot name="Bike" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
     <!-- Create ground visual -->
     <link name="ground">
