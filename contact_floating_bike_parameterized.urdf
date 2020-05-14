@@ -211,6 +211,7 @@
         <parent link="ce_frame" />
         <child link="front_frame" />
         <axis xyz="0 0 1" />
+        <dynamics damping="${steering_damping}" />
     </joint>
 
     <!-- Front wheel w/ steer basis -->
