@@ -123,6 +123,10 @@
         <child link="back_wheel" />
         <axis xyz="0 1 0" />
     </joint>
+    <transmission type="SimpleTransmission" name="pedaling">
+        <actuator name="pedaling_actuation" />
+        <joint name="back_wheel_rotates" />
+    </transmission>
 
     <!-- Rear frame -->
     <link name="rear_frame">
