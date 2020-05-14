@@ -176,7 +176,7 @@
         <parent link="rear_frame" />
         <child link="rider" />
         <axis xyz="1 0 0" />
-        <origin xyz="${L1} 0 0" rpy="0 .76 0"/>
+        <origin xyz="${rider_offset} 0 0" rpy="0 .76 0"/>
         <dynamics damping="${rider_damping}" />
     </joint>
     <transmission type="SimpleTransmission" name="rider_lean">
